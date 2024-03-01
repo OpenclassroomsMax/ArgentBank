@@ -5,10 +5,20 @@ import iconMoney from "../../assets/icon-money.png";
 import iconSecurity from "../../assets/icon-security.png";
 
 import HomeContent from "../../components/HomeContent/HomeContent";
+import getUser from "../../services/api";
+
+import HomePageData from "../../data/HomePageData.json"
 
 import "../Home/Home.css"
 
 export default function Home() {
+  getUser();
+  const imgSrcData ={
+    "icon-chat.png": iconChat,
+    "icon-money.png":iconMoney,
+    "icon-security.png":iconSecurity
+  }
+
   return (
     <main>
       <div class="hero">
@@ -22,23 +32,16 @@ export default function Home() {
       </div>
       <section class="features">
         <h2 class="sr-only">Features</h2>
-        <HomeContent
-          img={iconChat}
-          title="You are our #1 priority"
-          description="Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes."
-        />
-        <HomeContent
-          img={iconMoney}
-          title="More savings means higher rates"
-          description="The more you save with us, the higher your interest rate will be!"
-        />
-        <HomeContent
-          img={iconSecurity}
-          title="Security you can trust"
-          description=" We use top of the line encryption to make sure your data and money
-            is always safe."
-        />
+        {HomePageData.map((data) => (
+          <HomeContent
+          key={data.id}
+          img={imgSrcData[data.imgSrc]}
+          alt={data.alt}
+          title={data.title}
+          description={data.text}
+          
+          />
+        ))}
       </section>
     </main>
   );

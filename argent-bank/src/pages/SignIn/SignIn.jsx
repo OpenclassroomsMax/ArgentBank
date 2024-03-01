@@ -1,5 +1,8 @@
 import "../SignIn/SignIn.css"
 
+import { NavLink } from "react-router-dom";
+
+
 export default function SignIn() {
   return (
     <main class="main bg-dark">
@@ -19,9 +22,9 @@ export default function SignIn() {
             <input type="checkbox" id="remember-me" />
             <label for="remember-me">Remember me</label>
           </div>
-          <a href="./user.html" class="sign-in-button">
+          <NavLink to="/user" class="sign-in-button">
             Sign In
-          </a>
+          </NavLink>
         </form>
       </section>
     </main>
