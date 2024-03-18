@@ -2,6 +2,8 @@ import UserPageData from "../../data/UserPageData.json";
 
 import Account from "../../components/AccountContent/AccountContent.jsx";
 
+import "../User/User.css"
+
 export default function User() {
   return (
     <main class="main bg-dark">

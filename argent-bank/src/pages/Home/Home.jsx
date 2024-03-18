@@ -5,14 +5,13 @@ import iconMoney from "../../assets/icon-money.png";
 import iconSecurity from "../../assets/icon-security.png";
 
 import HomeContent from "../../components/HomeContent/HomeContent";
-import getUser from "../../services/api";
 
 import HomePageData from "../../data/HomePageData.json"
 
 import "../Home/Home.css"
 
 export default function Home() {
-  getUser();
+
   const imgSrcData ={
     "icon-chat.png": iconChat,
     "icon-money.png":iconMoney,
