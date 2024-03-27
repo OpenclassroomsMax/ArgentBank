@@ -1,29 +1,24 @@
 import axios from "axios";
 
 // Requêter un utilisateur avec un ID donné.
-export default async function userLogIn(email, password, rememberMe) {
+export async function userLogIn(email, password, rememberMe) {
   console.log(email, password);
-  const response =  await axios
-    .post("http://localhost:3001/api/v1/user/login", {
-      email: email,
-      password: password,
-    })
-    return response
-    /*.then(function (response) {
-      if (response.data.body.token) {
-        if (rememberMe) {
-
-        }
-      }
-    })*/
-
-    /*.catch(function (error) {
+  let response;
+  try {
+      response =  await axios
+      .post("http://localhost:3001/api/v1/user/login", {
+        email: email,
+        password: password,
+      })
+    }
+    catch (error) {
       if (error.response) {
-        return error.response.data;
+        return error.response.data
       }
-    });*/
+    };
+    return response;
 };
-async  function getUserProfileData(JWT) {
+export async function getUserProfileData(JWT) {
   return await axios.post("http://localhost:3001/api/v1/user/profile", {}, {
     headers: {
       Authorization: "Bearer " + JWT

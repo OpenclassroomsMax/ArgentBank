@@ -7,17 +7,17 @@ import "../Header/Header.css"
 
 export default function Header() {
   return (
-    <nav class="main-nav">
-      <Link class="main-nav-logo" to="/">
+    <nav className="main-nav">
+      <Link className="main-nav-logo" to="/">
         <img
-          class="main-nav-logo-image"
+          className="main-nav-logo-image"
           src={logo}
           alt="Argent Bank Logo"
         />
-        <h1 class="sr-only">Argent Bank</h1>
+        <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <NavLink class="main-nav-item" to="/sign-in">
+        <NavLink className="main-nav-item" to="/sign-in">
         <i className="fa fa-sign-out"></i>
           Sign In
         </NavLink>

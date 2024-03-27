@@ -12,25 +12,28 @@ import {
 } from '../../utils/reducer.jsx';
 
 
-import userLogIn from "../../services/api";
+import { userLogIn } from "../../services/api";
 
 export default function SignIn() {
   let navigate = useNavigate();
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('')
 
   const isUserLogedIn = useSelector((state) => state.login.isUserLogedIn);
   const dispatch = useDispatch();
 
   const handleSumit = async (e) => {
     e.preventDefault()
-
+    setError('')
 
     const response = await userLogIn(userName, password);
+
     if (response.status !== 200) {
-      return console.log("error");
+      return setError('The Username or Password is wrong')
     }
+    console.log(response.status)
 
     if (response.data.body.token) {
       dispatch(setToken(response.data.body.token))
@@ -45,24 +48,25 @@ export default function SignIn() {
 
 
   return (
-    <main class="main bg-dark">
-      <section class="sign-in-content">
-        <i class="fa fa-user-circle sign-in-icon"></i>
+    <main className="main bg-dark">
+      <section className="sign-in-content">
+        <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form >
-          <div class="input-wrapper">
-            <label for="username">Username</label>
+        <form onSubmit={handleSumit}>
+          <div className="input-wrapper">
+            <label htmlFor="username">Username</label>
             <input type="text" id="username" value={userName} onChange={(e) => setUserName(e.target.value)} />
           </div>
-          <div class="input-wrapper">
-            <label for="password">Password</label>
+          <div className="input-wrapper">
+            <label htmlFor="password">Password</label>
             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           </div>
-          <div class="input-remember">
+          <div className="input-remember">
             <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Remember me</label>
+            <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button type="submit" class="sign-in-button" onClick={handleSumit}>Sign In</button>
+          <button type="submit" className="sign-in-button" >Sign In</button>
+          <p className="error-message">{error}</p>
         </form>
       </section>
     </main>
@@ -70,5 +74,5 @@ export default function SignIn() {
 }
 
 {
-  /* <button class="sign-in-button">Sign In</button> */
+  /* <button className="sign-in-button">Sign In</button> */
 }
